@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cabernet  2024</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manufacturing+Consent&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -27,7 +27,7 @@
 
     h1 {
       text-align: center;
-      font-size: 2.7rem;
+      font-size: 3.2rem;
       margin-bottom: 0.5rem;
     }
 
@@ -39,23 +39,27 @@
     }
 
     .section {
-      margin-bottom: 1.8rem;
+      margin-bottom: 2rem;
     }
 
     .section h2 {
       border-bottom: 1px solid #9e6a6a;
-      padding-bottom: 0.3rem;
-      font-size: 1.3rem;
+      padding-bottom: 0.4rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 0,8rem;
     }
 
     ul {
       list-style: none;
       padding-left: 0;
+      margin: 0;
     }
 
     ul li::before {
       content: "• ";
       color: #9e6a6a;
+      font-weight: bold;
     }
 
     p {
@@ -68,27 +72,76 @@
       margin-top: 3rem;
       color: #7c4b4b;
     }
+    
+    .recycle-section {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
 
     .recycle-banner {
-      width: 90%;
+      width: 100%;
       max-width: 20em;
       height: auto;
       display: block;
+      flex-shrink: 0;
     }
 
-    @media (max-width: 600px) {
-      body {
-        padding: 1rem;
-      }
-
-      .container {
-        padding: 2rem;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
+    .disposal-list {
+      flex: 1;
     }
+
+    .disposal-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    .recycle-note {
+      font-size: 1rem;
+      font-weight: bold;
+      font-style: italic;
+      color: #4a1c1c;
+    }
+
+    .company-name {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #4a1c1c;
+    }
+
+    .company-name .logo {
+      font-family: 'Manufacturing Consent', serif;
+      font-size: 3rem;
+    }
+
+  @media (max-width: 600px) {
+    body {
+      padding: 1rem;
+    }
+
+    .container {
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .recycle-section {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .recycle-banner {
+      max-width: 100%;
+    }
+
+    .disposal-list {
+      width: 100%;
+    }
+  }
   </style>
 </head>
 <body>
@@ -105,13 +158,13 @@
         <li>Carboidrati: 0 g</li>
         <li>di cui zuccheri: 0 g</li>
         <li>Proteine: 0 g</li>
-        <li>Sale: <0,1 g</li>
+        <li>Sale: &lt;0,1 g</li>
       </ul>
     </div>
 
     <div class="section">
       <h2>Ingredienti</h2>
-      <p>uve Cabernet Franc e tanto tanto amore</p>
+      <p>Mosto d'uva; solfiti</p>
     </div>
 
     <div class="section">
@@ -131,10 +184,23 @@
 
     <div class="section">
       <h2>Smaltimento</h2>
-      <img src="img/smaltimento.png" alt="Indicazioni smaltimento" class="recycle-banner" />
+      <div class="recycle-section">
+        <img src="img/smaltimento.png" alt="Indicazioni smaltimento" class="recycle-banner" />
+        <ul class="disposal-list">
+          <li><b>Bottiglia</b>: vetro (GL 71)</li>
+          <li><b>Tappo</b>: sughero (FOR 51)</li>
+          <li><b>Capsula</b>: plastica con disco interno di alluminio (C/PVC 90)</li>
+          <p class="recycle-note">Verifica le disposizioni del tuo comune</p>
+        </ul>
+      </div>
     </div>
 
+
+
     <div class="footer">
+      <div class="company-name">
+        <span class="logo">Accordini</span>
+      </div>
       Pagina informativa conforme al Reg. UE 2021/2117 – Nessun tracciamento utente
     </div>
   </div>
