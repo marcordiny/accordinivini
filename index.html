@@ -1,68 +1,721 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accordini – Sito in costruzione</title>
-  <!-- Font "Old London" simile -->
-  <link href="https://fonts.googleapis.com/css2?family=Manufacturing+Consent&display=swap" rel="stylesheet">
-  <!-- Font stile Didot -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #fdfaf5; /* Avorio */
-      color: #4a1c1c; /* Bordeaux */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: 'Playfair Display', serif;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azienda Agricola Accordini</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manufacturing+Consent&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #8b7355;
+            --color-accent: #c9a86a;
+            --color-light: #fefefe;
+            --color-bg: #ffffff;
+            --color-gray: #e8e4df;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
 
-    h1 {
-      font-family: 'Manufacturing Consent', serif;
-      font-size: 8rem;
-      margin-bottom: 0.5rem;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .subtitle {
-      font-size: 1.2rem;
-      font-style: italic;
-      margin-bottom: 3rem;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    a {
-      text-decoration: none;
-      color: #4a1c1c;
-      background-color: #e8dcd2;
-      padding: 0.8rem 1.5rem;
-      border-radius: 10px;
-      font-size: 1rem;
-      transition: background 0.3s;
-    }
+        body {
+            font-family: var(--font-body);
+            color: var(--color-primary);
+            background-color: var(--color-bg);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-    a:hover {
-      background-color: #d8c4b6;
-    }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0) 100%);
+            transition: all 0.4s ease;
+        }
 
-    .bottom-link {
-      position: absolute;
-      bottom: 40px;
-    }
-  </style>
+        nav.scrolled {
+            padding: 1rem 5%;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Manufacturing Consent', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-secondary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #f5f3f0 0%, #ffffff 50%, #f9f7f4 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(201, 168, 106, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 115, 85, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Manufacturing Consent', serif;
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--color-primary);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--color-secondary);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-15px); }
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 50px;
+            background: var(--color-accent);
+            margin: 0 auto 10px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-secondary);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4rem;
+            font-weight: 300;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text {
+            padding: 2rem 0;
+        }
+
+        .about-text h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--color-secondary);
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .about-image {
+            position: relative;
+            height: 500px;
+            background: var(--color-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            inset: 20px;
+            border: 1px solid var(--color-accent);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+        }
+
+        /* Wines Gallery */
+        .wines {
+            background: var(--color-gray);
+        }
+
+        .wines-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+        }
+
+        .wine-card {
+            background: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .wine-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid transparent;
+            transition: border-color 0.4s ease;
+        }
+
+        .wine-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .wine-card:hover::before {
+            border-color: var(--color-accent);
+        }
+
+        .wine-image {
+            width: 100%;
+            height: 350px;
+            background: var(--color-gray);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wine-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .wine-card:hover .wine-image img {
+            transform: scale(1.05);
+        }
+
+        .wine-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .wine-card .variety {
+            font-size: 0.85rem;
+            color: var(--color-secondary);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .wine-card .description {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--color-secondary);
+        }
+
+        .contact-details {
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item label {
+            display: block;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .contact-item p {
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .contact-item a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--color-accent);
+        }
+
+        .map-container {
+            height: 500px;
+            background: var(--color-gray);
+            position: relative;
+            border: 1px solid var(--color-accent);
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-primary);
+            color: var(--color-light);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            font-weight: 300;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--color-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .wines-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 5rem 5%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Placeholder styling for demo images */
+        .placeholder-img {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f5f3f0 0%, #e8e4df 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-secondary);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
-  <div>
-    <h1>Accordini</h1>
-    <div class="subtitle">sito in costruzione</div>
-  </div>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#home" class="logo">Accordini</a>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Chi Siamo</a></li>
+            <li><a href="#wines">I Nostri Vini</a></li>
+            <li><a href="#contact">Contatti</a></li>
+        </ul>
+    </nav>
 
-  <div class="bottom-link">
-    <a href="elencoetichette.html">Vai alle etichette digitali</a>
-  </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Accordini</h1>
+            <p>Vitivinicoli dal XV Secolo
+            </p>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">Chi Siamo</h2>
+        <p class="section-subtitle">La Nostra Storia</p>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Una Tradizione di Famiglia</h3>
+                <p>L'azienda ha sede in un'antica villa munita (casaforte) la cui costruzione risale al XV secolo.</p>
+                <p>Azienda storica con antica cantina (soffitto originale con travatura in legno) e con botti in rovere e barriques francesi per la maturazione e l'affinamento dei vini.</p>
+                <p>Tutti i vini prodotti provengono esclusivamente dalle uve dei vigneti di nostra proprietà. La vendemmia viene effettuata manualmente dopo attenta valutazione dello stato di maturazione.</p>
+            </div>
+            <div class="about-image">
+                <div class="placeholder-img">La Nostra Cantina</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wines Gallery -->
+    <section id="wines" class="wines">
+        <h2 class="section-title">I Nostri Vini</h2>
+        <p class="section-subtitle">Colli Orientali del Friuli</p>
+        <div class="wines-grid">
+            <div class="wine-card">
+                <div class="wine-image">
+                    <div class="placeholder-img">Friulano</div>
+                </div>
+                <h3>Friulano</h3>
+                <p class="variety">DESCRIZIONE</p>
+                <p class="description">Subdescrizione</p>
+            </div>
+
+            <div class="wine-card">
+                <div class="wine-image">
+                    <div class="placeholder-img">Ribolla Gialla</div>
+                </div>
+                <h3>Ribolla Gialla</h3>
+                <p class="variety">DESCRIZIONE</p>
+                <p class="description">Subdesrizione</p>
+            </div>
+
+            <div class="wine-card">
+                <div class="wine-image">
+                    <div class="placeholder-img">Ferbint</div>
+                </div>
+                <h3>Ferbint</h3>
+                <p class="variety">Spumante Brut</p>
+                <p class="description">Spumante di Ribolla Gialla ALTRO</p>
+            </div>
+
+            <div class="wine-card">
+                <div class="wine-image">
+                    <div class="placeholder-img">Refosco di Faedis</div>
+                </div>
+                <h3>Regosco di Faedis</h3>
+                <p class="variety">Descrizione</p>
+                <p class="description">Subdescrizione</p>
+            </div>
+
+            <div class="wine-card">
+                <div class="wine-image">
+                    <div class="placeholder-img">Rommel 100</div>
+                </div>
+                <h3>Rommel</h3>
+                <p class="variety">Refosco dal P.R., Schioppettino & Pignolo</p>
+                <p class="description">Subdescrizione</p>
+            </div>
+
+            <div class="wine-card">
+                <div class="wine-image">
+                    <div class="placeholder-img">Pignolo</div>
+                </div>
+                <h3>Pignolo</h3>
+                <p class="variety">Pignolo</p>
+                <p class="description">La nostra etichetta più prestigiosa. Tannico, potente, destinato a lungo invecchiamento.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contatti</h2>
+        <p class="section-subtitle">Vieni a Trovarci</p>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Informazioni</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <label>Indirizzo</label>
+                        <p>Via Paolo Diacono 12<br>33040 Campeglio di Faedis (UD)<br>Friuli Venezia Giulia, Italia</p>
+                    </div>
+                    <div class="contact-item">
+                        <label>Telefono</label>
+                        <p><a href="tel:+390434123456">+39 0432 711005</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <label>Email</label>
+                        <p><a href="mailto:info@cantina.it">info@accordinivini.it</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <label>Orari di Apertura</label>
+                        <p>aggiornare<br>frasca<br>altro: Su appuntamento</p>
+                    </div>
+                </div>
+            </div>
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Azienda Agricola Accordini. Tutti i diritti riservati.</p>
+    </footer>
+
+    <!-- Leaflet CSS and JS for the map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Initialize map
+        const map = L.map('map').setView([446.130225881139346, 13.362620360195422], 13);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add marker for the winery (Pordenone coordinates)
+        const marker = L.marker([46.130225881139346, 13.362620360195422]).addTo(map);
+        marker.bindPopup("<b>Azienda Agricola Accordini</b><br>Via Paolo Diacono 12, Campeglio di Faedis").openPopup();
+
+        // Smooth reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.wine-card, .about-content, .contact-container').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
