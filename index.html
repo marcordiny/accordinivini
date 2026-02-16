@@ -149,7 +149,7 @@
 
         .hero h1 {
             font-family: 'Manufacturing Consent', serif;
-            font-size: 5rem;
+            font-size: 8rem;
             font-weight: 300;
             letter-spacing: 2px;
             margin-bottom: 1.5rem;
@@ -446,7 +446,7 @@
         /* Responsive */
         @media (max-width: 968px) {
             .hero h1 {
-                font-size: 3.5rem;
+                font-size: 6rem;
             }
 
             .nav-links {
@@ -487,7 +487,7 @@
 
         @media (max-width: 640px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 5rem;
             }
 
             .hero p {
@@ -685,14 +685,14 @@
         });
 
         // Initialize map
-        const map = L.map('map').setView([446.130225881139346, 13.362620360195422], 13);
+        const map = L.map('map').setView([46.13022, 13.36262], 16);
         
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // Add marker for the winery (Pordenone coordinates)
-        const marker = L.marker([46.130225881139346, 13.362620360195422]).addTo(map);
+        // Add marker for the winery
+        const marker = L.marker([46.13022, 13.3626]).addTo(map);
         marker.bindPopup("<b>Azienda Agricola Accordini</b><br>Via Paolo Diacono 12, Campeglio di Faedis").openPopup();
 
         // Smooth reveal animations on scroll
